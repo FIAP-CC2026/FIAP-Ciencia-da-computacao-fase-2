@@ -1,3 +1,25 @@
+# Regras lógicas de autorização de pouso
+
+LIMITE_EMERGENCIA = 15
+CONSUMO_POR_ESPERA = 5
+MAX_TENTATIVAS = 3
+
+
+def avaliar_pouso(modulo, atmosfera_ok, area_livre):
+    emergencia = modulo["combustivel"] < LIMITE_EMERGENCIA
+
+    if not modulo["sensores_ok"]:
+        return "ALERTA"
+    elif area_livre and atmosfera_ok:
+        return "AUTORIZADO"
+    elif area_livre and emergencia:
+        return "EMERGENCIAL"
+    elif modulo["tentativas"] >= MAX_TENTATIVAS:
+        return "ALERTA"
+    else:
+        return "ADIADO"
+
+
 # 3.1 - Autorização de pouso (if/elif/else)
 
 def autorizar_pouso(combustivel, sensores_ok, vento, tempestade, area_livre):
@@ -19,7 +41,3 @@ def autorizar_pouso(combustivel, sensores_ok, vento, tempestade, area_livre):
         return "ALERTA"
     else:
         return "ESPERA"
-
-
-if __name__ == "__main__":
-    print(autorizar_pouso(85, True, 40, False, True))

@@ -1,6 +1,6 @@
-# Parte 2 - Portas lógicas
+# Regras de decisão e portas lógicas
 
-Circuito feito no CircuitVerse (arquivo MGPEB_Painel_Pouso.cv, abrir em Project > Import Project).
+Circuito feito no CircuitVerse (arquivo painel_pouso.cv, abrir em Project > Import Project).
 
 ## Entradas
 
