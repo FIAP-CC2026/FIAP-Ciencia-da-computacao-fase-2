@@ -27,6 +27,8 @@ mgpeb/
     simulacao.py                Fila, ciclos e pilha de decisões
 docs/
     estruturas_dados.md         Anexo de listas, fila e pilha
+    modelagem_matematica_e_contexto_historico.pdf
+                                Contribuição das seções 4 e 5 (Gustavo)
     portas_logicas/
         regras_logicas.md       Expressões booleanas e tabela verdade
         painel_pouso.cv         Projeto para importar no CircuitVerse
@@ -43,7 +45,8 @@ Os arquivos e funções usam nomes descritivos em português, sem acentos, em `s
 | Portas lógicas e funções booleanas | [Regras e circuito](docs/portas_logicas/regras_logicas.md) |
 | Condicionais, buscas, ordenações e simulação | Pacote `mgpeb/`, executado por `main.py` |
 | Listas, fila e pilha | [Anexo de estruturas de dados](docs/estruturas_dados.md) |
-| Modelagem matemática, evolução da computação e ESG | Integração no relatório técnico final pendente |
+| Modelagem matemática e evolução da computação | [Seções 4 e 5 — contribuição do Gustavo](docs/modelagem_matematica_e_contexto_historico.pdf) |
+| ESG e governança | Integração no relatório técnico final pendente |
 | Relatório técnico de 5 a 10 páginas em PDF | Entrega pendente; adicionar em `docs/relatorio_tecnico.pdf` quando finalizado |
 
 ## Regras que precisam ser alinhadas no relatório
