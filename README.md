@@ -51,9 +51,14 @@ Os arquivos e funções usam nomes descritivos em português, sem acentos, em `s
 
 ## Regras que precisam ser alinhadas no relatório
 
-As duas contribuições existentes foram preservadas em `mgpeb/regras_pouso.py`:
+A simulação e o circuito usam a mesma regra, implementada em `autorizar_pouso` (`mgpeb/regras_pouso.py`). Ela recebe `combustivel`, `sensores_ok`, `vento`, `tempestade` e `area_livre` e retorna `AUTORIZADO`, `ALERTA` ou `ESPERA`:
 
-- `autorizar_pouso`: corresponde ao circuito. Exige combustível de pelo menos 30%, sensores íntegros, vento de até 60 km/h, ausência de tempestade e área livre. Retorna `AUTORIZADO`, `ALERTA` ou `ESPERA`.
-- `avaliar_pouso`: utilizada pela simulação. Permite pouso com atmosfera favorável e área livre sem exigir o mínimo de 30%; permite pouso `EMERGENCIAL` com atmosfera desfavorável e combustível abaixo de 15%. Também considera tentativas e retorna `ADIADO` quando necessário.
+- `C`: combustível de pelo menos 30%.
+- `S`: sensores íntegros.
+- `A`: vento de até 60 km/h e ausência de tempestade.
+- `L`: área de pouso livre.
+- `AUTORIZADO`: `(C and S) and (A and L)`.
+- `ALERTA`: `not (C and S)`, falha no próprio módulo.
+- `ESPERA`: `(C and S) and not (A and L)`, módulo bem, mas o ambiente não permite pousar agora.
 
-Antes da entrega final, a equipe deve escolher a regra definitiva e alinhar circuito, código e relatório. A reorganização dos arquivos preserva o comportamento atual e não resolve essa divergência de critérios.
+Na simulação, cada ciclo define vento, tempestade e área livre (`CONDICOES_POR_CICLO` em `mgpeb/simulacao.py`). Um módulo em `ESPERA` perde 5% de combustível e volta ao fim da fila; ao cair abaixo de 30%, passa a `ALERTA`. Com os módulos de exemplo, aparecem os três resultados: `LAB-01` autorizado, `HAB-01` em espera e `ENE-01` em alerta
