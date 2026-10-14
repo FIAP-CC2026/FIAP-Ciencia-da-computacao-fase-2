@@ -1,13 +1,14 @@
-from .regras_pouso import avaliar_pouso, CONSUMO_POR_ESPERA
+from .regras_pouso import autorizar_pouso, CONSUMO_POR_ESPERA
 
 
 # Simulação dos ciclos de pouso
+# Cada ciclo: (vento em km/h, tempestade, área livre)
 CONDICOES_POR_CICLO = [
-    (True,  True),
-    (False, True),
-    (False, True),
-    (True,  False),
-    (True,  True),
+    (40, False, True),
+    (80, False, True),
+    (40, True,  True),
+    (40, False, False),
+    (40, False, True),
 ]
 
 
@@ -20,25 +21,26 @@ def simular_pousos(fila_pouso):
 
     while fila_pouso:
         if ciclo < len(CONDICOES_POR_CICLO):
-            atmosfera_ok, area_livre = CONDICOES_POR_CICLO[ciclo]
+            vento, tempestade, area_livre = CONDICOES_POR_CICLO[ciclo]
         else:
-            atmosfera_ok, area_livre = True, True
+            vento, tempestade, area_livre = 40, False, True
         ciclo += 1
 
         modulo = fila_pouso.pop(0)
-        decisao = avaliar_pouso(modulo, atmosfera_ok, area_livre)
+        decisao = autorizar_pouso(modulo["combustivel"], modulo["sensores_ok"],
+                                  vento, tempestade, area_livre)
 
-        clima = "favorável" if atmosfera_ok else "desfavorável"
         area = "livre" if area_livre else "ocupada"
         print(f"\nCiclo {ciclo}: {modulo['id']} ({modulo['tipo']}) | "
-              f"combustível {modulo['combustivel']}% | clima {clima} | área {area}")
+              f"combustível {modulo['combustivel']}% | vento {vento} km/h | "
+              f"tempestade {'sim' if tempestade else 'não'} | área {area}")
 
         if modulo in em_espera:
             em_espera.remove(modulo)
 
-        if decisao in ("AUTORIZADO", "EMERGENCIAL"):
+        if decisao == "AUTORIZADO":
             pousados.append(modulo)
-            print(f"Pouso {decisao.lower()}.")
+            print("Pouso autorizado.")
         elif decisao == "ALERTA":
             em_alerta.append(modulo)
             print("Módulo encaminhado para inspeção.")
@@ -47,7 +49,7 @@ def simular_pousos(fila_pouso):
             modulo["combustivel"] = max(0, modulo["combustivel"] - CONSUMO_POR_ESPERA)
             em_espera.append(modulo)
             fila_pouso.append(modulo)
-            print(f"Pouso adiado (tentativa {modulo['tentativas']}), "
+            print(f"Pouso em espera (tentativa {modulo['tentativas']}), "
                   f"combustível agora {modulo['combustivel']}%")
 
         historico.append((ciclo, modulo["id"], decisao))
