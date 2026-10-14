@@ -22,7 +22,7 @@ A retirada do início de uma lista exige deslocar os demais elementos, com custo
 
 `historico` armazena tuplas `(ciclo, identificacao, decisao)`. Cada decisão é empilhada com `append`. `desempilhar_historico` usa `pop()` para apresentar primeiro a decisão mais recente: comportamento LIFO, último a entrar, primeiro a sair.
 
-Por exemplo, após empilhar `(1, "HAB-01", "AUTORIZADO")` e `(2, "ENE-01", "ADIADO")`, o primeiro evento retirado será o de `ENE-01`. A exibição final retira até três registros, consumindo essas entradas da pilha.
+Por exemplo, após empilhar `(1, "HAB-01", "AUTORIZADO")` e `(2, "ENE-01", "ESPERA")`, o primeiro evento retirado será o de `ENE-01`. A exibição final retira até três registros, consumindo essas entradas da pilha.
 
 ## Busca e ordenação
 
@@ -32,4 +32,4 @@ Bubble sort, selection sort e insertion sort têm custo O(n²) no pior caso e tr
 
 ## Relação com o relatório
 
-Este anexo pode ser incorporado ao PDF final. As regras do circuito e da simulação ainda precisam ser unificadas pela equipe, conforme descrito no README, para que os exemplos do relatório reflitam a decisão definitiva.
+Este anexo está contemplado no relatório técnico final. As regras do circuito e da simulação usam a função `autorizar_pouso`, mantendo os exemplos do relatório coerentes com a decisão executada pelo programa.
