@@ -66,9 +66,10 @@ def main():
     # Simulação
     print("\nSimulação dos pousos")
     print("Os módulos serão atendidos na ordem da fila acima.")
-    print("Sensores funcionando e área livre são obrigatórios para pousar.")
-    print("Com clima desfavorável, o pouso só ocorre com combustível abaixo de 15%.")
-    print("Quem tiver o pouso adiado perde 5% de combustível e volta ao fim da fila.")
+    print("O pouso exige combustível de pelo menos 30%, sensores funcionando,")
+    print("vento de até 60 km/h sem tempestade e área livre.")
+    print("Falha no módulo (combustível abaixo de 30% ou sensores com defeito) gera alerta.")
+    print("Se o ambiente não permitir, o módulo fica em espera, perde 5% de combustível e volta ao fim da fila.")
     pousados, em_espera, em_alerta, historico = simular_pousos(fila_pouso)
 
     # Resultado final
