@@ -46,7 +46,7 @@ Os arquivos e funções usam nomes descritivos em português, sem acentos, em `s
 | Portas lógicas e funções booleanas | [Regras e circuito](docs/portas_logicas/regras_logicas.md) |
 | Condicionais, buscas, ordenações e simulação | Pacote `mgpeb/`, executado por `main.py` |
 | Listas, fila e pilha | [Anexo de estruturas de dados](docs/estruturas_dados.md) |
-| Modelagem matemática e evolução da computação | [Seções 4 e 5 — contribuição do Gustavo](docs/modelagem_matematica_e_contexto_historico.pdf) |
+| Modelagem matemática e evolução da computação | [Seções 4 e 5 ](docs/modelagem_matematica_e_contexto_historico.pdf) |
 | ESG e governança | Seção 8 do [relatório técnico](docs/relatorio_tecnico.pdf) |
 | Relatório técnico de 5 a 10 páginas em PDF | [Relatório técnico final](docs/relatorio_tecnico.pdf) |
 
